@@ -1,3 +1,4 @@
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/61469904/123885085-aaa13200-d91a-11eb-904d-0be5407c6b8d.gif)
 Assignment 1 for Code Path iOS Tech Fellow Training
 # FlixNet
 
