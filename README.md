@@ -26,4 +26,4 @@ Flix is an app that allows users to browse movies from the [The Movie Database A
 
 ### Notes
 I had some issues dealing with Step 4, installing the CocoaPods, and getting the commands to work corrently. To solve it, I installed CocoaPods using HomeBrew and that seemed to solve the issue with the commands. I believe that CocoaPods was not installed on my machine or I didn't know how to access it properly.
-Besides that, no other major challanges for this part of the project except when it came to running the app on my device. I thought the process would be more straight forward. After, playing around with some siging settings and make sure my apple ID were set up correctly, everything worked as expected.
+Besides that, no other major challanges for this part of the project except when it came to running the app on my device. I thought the process would be more straight forward. After, playing around with some sing in settings and making sure my apple ID were set up correctly, everything worked as expected.
