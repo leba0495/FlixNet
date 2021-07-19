@@ -3,6 +3,25 @@ Assignment 1 for Code Path iOS Tech Fellow Training
 
 Flix is an app that allows users to browse movies from the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
+## Flix Part 2
+
+### User Stories
+
+#### REQUIRED (10pts)
+- [x] (5pts) User can tap a cell to see more details about a particular movie.
+- [x] (5pts) User can tap a tab bar button to view a grid layout of Movie Posters using a CollectionView.
+
+#### BONUS
+- [ ] (2pts) User can tap a poster in the collection view to see a detail screen of that movie.
+- [ ] (2pts) In the detail view, when the user taps the poster, a new screen is presented modally where they can view the trailer.
+
+### App Walkthrough GIF
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/61469904/126095183-e335d299-f424-4031-82b4-c268cd44f9d7.gif)
+
+### Notes
+This part 2 of the flix app was very insightful because it allowed to learn the many feature you can add to your app with just some basic and simple code or settings. I spent a lot of time try to get the image poster to display correctly on the Movie Feed. I believe the way I had set up my stackviews was not allowing me to set up the prototype cell's content to display how I wanted it. Also, when it came to abjust the grid layout on the collection view, I tried to do it on the interface builder through the inspectors but it resulted so much easier to follow along the video. I still need to dive deeper into collection views to understand the layout better like the inter item spacing. Overall, it was a good learning experience and I hope to tackle the bonus challenges soon.
+
+
 ## Flix Part 1
 
 ### User Stories
