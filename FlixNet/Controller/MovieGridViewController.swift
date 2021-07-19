@@ -1,27 +1,40 @@
 //
-//  MovieFeedViewController.swift
+//  MovieGridViewController.swift
 //  FlixNet
 //
-//  Created by Luis Brito on 6/28/21.
+//  Created by Luis Brito on 7/18/21.
 //
 
 import UIKit
 import AlamofireImage
 
-class MovieFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
-   
-    var movies = [[String : Any]]()
+class MovieGridViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    
+    // Needs a new set of properties
+    var movies = [[String : Any]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.dataSource = self
-        tableView.delegate = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
+         
+        // Set up Grid Layout
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
+        layout.minimumLineSpacing = 4
+        layout.minimumInteritemSpacing = 4
+        
+            //Obtain the width of the screen
+                //Set up proper spacing and ratios to display grid
+        let width = (view.frame.size.width - layout.minimumInteritemSpacing * 2) / 2
+        layout.itemSize = CGSize(width: width, height: width * 1.5)
+
         //API Request
-        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/297762/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         let task = session.dataTask(with: request) { (data, response, error) in
@@ -32,41 +45,37 @@ class MovieFeedViewController: UIViewController, UITableViewDataSource, UITableV
                     let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 self.movies = dataDictionary["results"] as! [[String : Any]]
                 
-                //Reload data in order to populate the cells
-                self.tableView.reloadData()
+                self.collectionView.reloadData()
                     // TODO: Get the array of movies
                     // TODO: Store the movies in a property to use elsewhere
                     // TODO: Reload your table view data
-//                print(self.movies)
+                //print(self.movies)
              }
         }
         task.resume()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
     
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell") as! MovieCell
-        //Obtain the current row being called
-        let movie = movies[indexPath.row]
-        //Store the title of the movie in the variable, remeber to cast it as a string
-        let title = movie["title"] as! String
-        let sypnosis = movie["overview"] as! String
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieGridCell", for: indexPath) as! MovieGridCell
         
-        cell.titleLabel.text = title
-        cell.sypnosisLabel.text = sypnosis
-        
+        let movie = movies[indexPath.item]
         //Set up to get the movie poster to display
         let baseUrl = "https://image.tmdb.org/t/p/w185"
         let posterPath = movie["poster_path"] as! String
         let posterUrl = URL(string: baseUrl + posterPath)
         
         cell.posterImageView.af.setImage(withURL: posterUrl!)
+    
+        
         return cell
     }
+    
+
+    
 
     /*
     // MARK: - Navigation

@@ -6,6 +6,5 @@ target 'FlixNet' do
   use_frameworks!
 
   # Pods for FlixNet
-  pod "AlamofireImage"
 
 end
